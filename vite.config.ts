@@ -8,6 +8,13 @@ import cssInjectedByJs from "vite-plugin-css-injected-by-js";
 // runtime by JS so authors only ever add a single <script> tag.
 export default defineConfig({
   plugins: [react(), cssInjectedByJs()],
+  // Library builds (unlike app builds) do NOT replace process.env.NODE_ENV, so
+  // React's dev/prod branch would survive and reference `process` — undefined in
+  // a plain browser. Define it so the production path is selected and the dev
+  // branch is dead-code-eliminated.
+  define: {
+    "process.env.NODE_ENV": JSON.stringify("production"),
+  },
   // Ensure the prebuilt diy-guides-ui (which externalizes React) shares this
   // bundle's single React copy.
   resolve: {
