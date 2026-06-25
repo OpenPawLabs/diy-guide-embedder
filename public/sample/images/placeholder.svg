@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
   <rect width="800" height="600" fill="#e0f2fe" />
   <rect x="80" y="80" width="640" height="440" rx="24" fill="none" stroke="#0284c7" stroke-width="8" stroke-dasharray="24 20" />
   <text x="400" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="42" font-weight="700" fill="#0369a1">Sample media</text>
