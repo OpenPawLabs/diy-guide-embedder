@@ -1,0 +1,44 @@
+import {
+  GuideLayout,
+  GuideStep,
+  GuideStepList,
+  MediaFigure,
+  ToolList,
+} from "@openpawlabs/diy-guides-ui";
+
+<GuideLayout>
+
+  <GuideLayout.Header
+    title="Embedder dev sample"
+    difficulty="easy"
+    timeEstimate="5 minutes"
+    meta="Dev"
+  />
+
+  <GuideLayout.Intro>
+    A local sample guide used to exercise the embedder dev harness. Relative
+    asset paths like `./images/placeholder.svg` resolve against this guide's URL.
+  </GuideLayout.Intro>
+
+  <GuideLayout.Sidebar>
+    <ToolList title="Tools">
+      <ToolList.Item name="Curiosity" quantity={1} />
+    </ToolList>
+  </GuideLayout.Sidebar>
+
+  <GuideLayout.Content>
+    <GuideStepList>
+      <GuideStep title="It renders">
+        <GuideStep.Media>
+          <MediaFigure src="./images/placeholder.svg" />
+        </GuideStep.Media>
+        <GuideStep.Bullets>
+          <GuideStep.Bullet>
+            This guide was fetched, compiled, and rendered entirely in the browser.
+          </GuideStep.Bullet>
+        </GuideStep.Bullets>
+      </GuideStep>
+    </GuideStepList>
+  </GuideLayout.Content>
+
+</GuideLayout>
