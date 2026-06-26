@@ -4,9 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@openpawlabs/diy-guides-ui': link:../diy-guides-ui-react
-
 importers:
 
   .:
@@ -15,8 +12,8 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1
       '@openpawlabs/diy-guides-ui':
-        specifier: link:../diy-guides-ui-react
-        version: link:../diy-guides-ui-react
+        specifier: ^1.5.5
+        version: 1.5.5(online-3d-viewer@0.18.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)
       online-3d-viewer:
         specifier: ^0.18.0
         version: 0.18.0
@@ -314,6 +311,13 @@ packages:
     peerDependencies:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
+
+  '@openpawlabs/diy-guides-ui@1.5.5':
+    resolution: {integrity: sha512-lS6cNmAhfxqtU06vS2cNNArtzRVZ7Hw43GBWxF8rhD4Wi22mZTbWpVgdzHqwJoMXdfdsshkm8NvOQx8ACkzpRg==}
+    peerDependencies:
+      online-3d-viewer: ^0.18.0
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
 
   '@oxc-project/types@0.137.0':
     resolution: {integrity: sha512-WT+Gb24i8hmvo85AIv2oEYouEXkRlKAlT9WaCa3TfLgNCN+GhrJOGZuIlMouAh38Qe4QOx26eUOVsq70qXrywA==}
@@ -1925,6 +1929,12 @@ snapshots:
       '@emnapi/runtime': 1.11.1
       '@tybys/wasm-util': 0.10.3
     optional: true
+
+  '@openpawlabs/diy-guides-ui@1.5.5(online-3d-viewer@0.18.0)(react-dom@19.2.7(react@19.2.7))(react@19.2.7)':
+    dependencies:
+      online-3d-viewer: 0.18.0
+      react: 19.2.7
+      react-dom: 19.2.7(react@19.2.7)
 
   '@oxc-project/types@0.137.0': {}
 

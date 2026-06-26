@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@mdx-js/mdx": "^3.1.1",
-    "@openpawlabs/diy-guides-ui": "^1.5.0",
+    "@openpawlabs/diy-guides-ui": "^1.5.5",
     "online-3d-viewer": "^0.18.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
@@ -41,10 +41,5 @@
     "vite": "^8.1.0",
     "vite-plugin-css-injected-by-js": "^3.5.2",
     "vitest": "^4.1.9"
-  },
-  "pnpm": {
-    "overrides": {
-      "@openpawlabs/diy-guides-ui": "link:../diy-guides-ui-react"
-    }
   }
 }
