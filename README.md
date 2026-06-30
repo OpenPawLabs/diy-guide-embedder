@@ -53,9 +53,10 @@ URLs are rewritten on the MDX **source** rather than by wrapping components,
 because the components detect their children by referential identity; wrapping
 would break galleries and bullet lists.
 
-Everything — React, the guide components (with HeroUI), the MDX compiler, and the
-compiled CSS — is bundled into one `embed.js`. The CSS is injected at runtime, so
-a single script tag is all an author ever adds.
+Everything — React, the guide components, HeroUI styles, generated Tailwind
+utilities, the library component CSS, and the MDX compiler — is bundled into one
+`embed.js`. The CSS is injected at runtime, so a single script tag is all an
+author ever adds.
 
 ## Trust model
 
@@ -65,26 +66,22 @@ third-party guides is **not** a goal of this project.
 
 ## Styling
 
-The guide ships its own compiled styles (Tailwind + HeroUI). These are global, so
-the embedder is designed for pages where the guide is the main content. It is not
-isolated in a Shadow DOM (which would break the image lightbox and other overlays
-that render via portals).
+The embedder owns its Tailwind build and scans the installed
+`@openpawlabs/diy-guides-ui` package while bundling. These styles are global, so
+the embedder is designed for pages where the guide is the main content. It is
+not isolated in a Shadow DOM (which would break the image lightbox and other
+overlays that render via portals).
 
 ## Development
 
 ```bash
-pnpm install   # links ../diy-guides-ui-react for local dev (see note below)
+pnpm install
 pnpm dev       # dev harness at http://localhost:5173 (renders public/sample)
 pnpm test      # Vitest (jsdom)
 pnpm typecheck
 pnpm lint
 pnpm build     # → dist/embed.js (single self-contained script)
 ```
-
-> The committed `pnpm.overrides` links `@openpawlabs/diy-guides-ui` to the sibling
-> `../diy-guides-ui-react` checkout for local development. CI drops this override
-> and builds against the published package — see
-> [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml).
 
 ## License
 

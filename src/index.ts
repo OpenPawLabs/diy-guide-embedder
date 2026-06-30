@@ -1,4 +1,4 @@
-import "@openpawlabs/diy-guides-ui/styles";
+import "./styles.css";
 import { registerDiyGuideElement } from "./element";
 
 registerDiyGuideElement();

@@ -47,6 +47,23 @@ describe("rewriteAssetUrls", () => {
     expect(output).toContain('href="https://shop.example/kit"');
   });
 
+  it("rewrites heroImage on GuideLayout.Header to an absolute URL", () => {
+    const source = `<GuideLayout>
+  <GuideLayout.Header
+    title="Overview Guide"
+    heroImage="./images/trackers-with-dock-wip-1.png"
+    heroImageAlt="Trackers on a dock"
+  />
+</GuideLayout>`;
+
+    const output = rewriteAssetUrls(source, BASE);
+
+    expect(output).toContain(
+      'heroImage="https://example.github.io/my-guide/images/trackers-with-dock-wip-1.png"',
+    );
+    expect(output).toContain('heroImageAlt="Trackers on a dock"');
+  });
+
   it("leaves relative paths inside fenced code blocks untouched", () => {
     const source = [
       "Add the embed tag:",

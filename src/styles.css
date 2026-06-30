@@ -1,0 +1,4 @@
+@import "tailwindcss";
+@source "../node_modules/@openpawlabs/diy-guides-ui/dist";
+@import "@heroui/styles";
+@import "@openpawlabs/diy-guides-ui/styles";

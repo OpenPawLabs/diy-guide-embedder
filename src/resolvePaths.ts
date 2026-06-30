@@ -3,7 +3,7 @@ import remarkParse from "remark-parse";
 import { unified } from "unified";
 
 /** JSX attributes whose string values are guide-relative asset URLs. */
-const URL_ATTRIBUTES = new Set(["src", "href", "thumbnail", "poster"]);
+const URL_ATTRIBUTES = new Set(["src", "href", "thumbnail", "poster", "heroImage"]);
 
 /**
  * Build a resolver that turns a guide-relative asset path into an absolute URL.

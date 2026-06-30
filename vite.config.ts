@@ -1,13 +1,14 @@
+import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import cssInjectedByJs from "vite-plugin-css-injected-by-js";
 
-// The embedder ships as ONE self-contained script: React, the prebuilt
-// @openpawlabs/diy-guides-ui bundle (HeroUI + its compiled CSS), and the MDX
-// compiler are bundled into dist/embed.js. The library's CSS is injected at
-// runtime by JS so authors only ever add a single <script> tag.
+// The embedder ships as ONE self-contained script: React, diy-guides-ui,
+// HeroUI styles, generated Tailwind utilities, and the MDX compiler are
+// bundled into dist/embed.js. CSS is injected at runtime by JS so authors only
+// ever add a single <script> tag.
 export default defineConfig({
-  plugins: [react(), cssInjectedByJs()],
+  plugins: [react(), tailwindcss(), cssInjectedByJs()],
   // Library builds (unlike app builds) do NOT replace process.env.NODE_ENV, so
   // React's dev/prod branch would survive and reference `process` — undefined in
   // a plain browser. Define it so the production path is selected and the dev

@@ -32,11 +32,6 @@ jobs:
           node-version: 24
           cache: pnpm
 
-      # The link:../diy-guides-ui-react override is a local-dev convenience; the
-      # sibling repo is not present in CI. Drop it so the published package is used.
-      - name: Use published @openpawlabs/diy-guides-ui
-        run: node -e "const f='package.json',p=require('./'+f);delete p.pnpm;require('fs').writeFileSync(f,JSON.stringify(p,null,2)+'\n')"
-
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
 
