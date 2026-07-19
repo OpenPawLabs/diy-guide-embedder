@@ -1,5 +1,10 @@
 import { useEffect, useState, type CSSProperties } from "react";
 import { createRoot, type Root } from "react-dom/client";
+import {
+  GUIDE_IMAGE_VARIANTS_PATH,
+  GuideImageVariantsProvider,
+  type GuideImageVariantsManifest,
+} from "@openpawlabs/diy-guides-ui";
 import { guideComponents } from "./components";
 import { compileGuide, formatMdxError, type GuideMdxComponent } from "./mdx";
 import { rewriteAssetUrls } from "./resolvePaths";
@@ -9,8 +14,26 @@ export const ELEMENT_NAME = "diy-guide";
 
 type LoadState =
   | { status: "loading" }
-  | { status: "ready"; Content: GuideMdxComponent }
+  | {
+      status: "ready";
+      Content: GuideMdxComponent;
+      variants: GuideImageVariantsManifest | null;
+    }
   | { status: "error"; message: string };
+
+async function loadVariantsManifest(
+  guideUrl: string,
+): Promise<GuideImageVariantsManifest | null> {
+  try {
+    const response = await fetch(new URL(GUIDE_IMAGE_VARIANTS_PATH, guideUrl).href);
+    if (!response.ok) {
+      return null;
+    }
+    return (await response.json()) as GuideImageVariantsManifest;
+  } catch {
+    return null;
+  }
+}
 
 /** Fetches, compiles, and renders a single guide; shows loading/error inline. */
 function GuideMount({ url }: { url: string }) {
@@ -28,9 +51,12 @@ function GuideMount({ url }: { url: string }) {
           );
         }
         const source = await response.text();
-        const Content = await compileGuide(rewriteAssetUrls(source, url), url);
+        const [Content, variants] = await Promise.all([
+          compileGuide(rewriteAssetUrls(source, url), url),
+          loadVariantsManifest(url),
+        ]);
         if (!cancelled) {
-          setState({ status: "ready", Content });
+          setState({ status: "ready", Content, variants });
         }
       } catch (error) {
         if (!cancelled) {
@@ -52,8 +78,12 @@ function GuideMount({ url }: { url: string }) {
     return <Notice tone="error">{state.message}</Notice>;
   }
 
-  const { Content } = state;
-  return <Content components={guideComponents} />;
+  const { Content, variants } = state;
+  return (
+    <GuideImageVariantsProvider manifest={variants}>
+      <Content components={guideComponents} />
+    </GuideImageVariantsProvider>
+  );
 }
 
 const noticeBase: CSSProperties = {

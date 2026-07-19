@@ -39,6 +39,16 @@ not the host page. So a guide and its `images/` folder can live in a subfolder a
 still render correctly no matter which page embeds it. Absolute URLs, protocol-
 relative URLs (`//…`), and `data:` URIs are passed through untouched.
 
+### Faster image loads (optional)
+
+The embedder does **not** resize images at runtime. If the guide host has run
+`diy-guide-images` (from `@openpawlabs/diy-guides-ui`) before publishing, an
+`images/thumbnails/variants.json` file will sit beside the guide; the embedder
+loads it and the UI serves AVIF `srcset` automatically. Without that file, guides
+still work — they just download the full canonical images. See
+[`diy-guide-example`](https://github.com/OpenPawLabs/diy-guide-example) for a
+Pages workflow that generates variants on deploy.
+
 ## How it works
 
 ```
